@@ -30,20 +30,12 @@ pigeon_list
 
   pigeon_list = {}
 
-  pigeon_data.each do |attribute, attribute_data|
-    attribute_data.each do |option, pigeon_array|
-      pigeon_array.each do |pigeon|
+  pigeon_data.each {|attribute, attribute_data| attribute_data.each {|option, pigeon_array| pigeon_array.each {|pigeon|
         if pigeon_list.include?(pigeon)
-          if pigeon_list[pigeon].include?(attribute)
-            pigeon_list[pigeon][attribute] << option.to_s
-          else
-            pigeon_list[pigeon][attribute] = [option.to_s]
-          end
+          pigeon_list[pigeon].include?(attribute) ?  pigeon_list[pigeon][attribute] << option.to_s : pigeon_list[pigeon][attribute] = [option.to_s]
         else
           pigeon_list[pigeon] = {attribute => [option.to_s]}
         end
-      end
-    end
-  end
+      }}}
   pigeon_list
 end
